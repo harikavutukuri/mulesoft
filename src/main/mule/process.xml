@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="ffb3b5f3-4200-4e0e-92eb-312e6c1f46df" >
+		<http:listener-connection host="0.0.0.0" port="8082" />
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="c96c2af4-3598-4cc9-a615-97b90cd69083" >
+		<http:request-connection host="localhost" port="8081" />
+	</http:request-config>
+	<flow name="processFlow" doc:id="3813ce04-e58c-4710-806a-2e07979693b8" >
+		<http:listener doc:name="Listener" doc:id="b6b07bc6-fad8-4ed3-a874-e9941fc92f92" config-ref="HTTP_Listener_config" path="/process"/>
+		<http:request method="GET" doc:name="Request" doc:id="652158d6-72a2-4b4e-9305-0ee371f276f3" config-ref="HTTP_Request_configuration" path="/system"/>
+	</flow>
+</mule>
